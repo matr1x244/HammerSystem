@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.hammersystem.databinding.FragmentDetailFoodBinding
 import com.example.hammersystem.domain.model.data.DataFood
 
@@ -37,12 +38,11 @@ class DetailFragment : Fragment() {
 
     private fun detailFood() {
         val about = detailFoodArguments()
-//        val behavior = ButtonBehavior(requireContext())
+        Glide.with(binding.bannerImageview)
+            .load(about?.image)
+            .into(binding.bannerImageview)
 
-//        Glide.with(binding.avatar)
-//            .load(about?.avatar)
-//            .into(binding.avatar)
-
+        binding.descrpFoodTextview.text = about?.description
         binding.titleFoodTextview.text = about?.title
     }
 

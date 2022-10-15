@@ -3,17 +3,17 @@ package com.example.hammersystem.utils
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.widget.HorizontalScrollView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.google.android.material.appbar.AppBarLayout
 
-class NestedBehavior (context: Context, attr: AttributeSet) :
+class NestedBehavior(context: Context, attr: AttributeSet) :
     CoordinatorLayout.Behavior<View>(context, attr) {
 
     override fun layoutDependsOn(
         parent: CoordinatorLayout,
         child: View,
         dependency: View
-    ) = dependency is AppBarLayout
+    ) = dependency is HorizontalScrollView
 
     override fun onDependentViewChanged(
         parent: CoordinatorLayout,
@@ -21,7 +21,7 @@ class NestedBehavior (context: Context, attr: AttributeSet) :
         dependency: View
     ): Boolean {
 
-        val bar = dependency as AppBarLayout //связываем с appbar
+        val bar = dependency as HorizontalScrollView
         child.y = bar.height.toFloat() + bar.y
 
         return super.onDependentViewChanged(parent, child, dependency)
